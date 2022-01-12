@@ -8,6 +8,14 @@
 
 ---
 
+## Very first startup
+1. Clone or fork the repo
+2. Install all the necessary dependencies with `npm install`
+3. Once in the code editor, press `F5` to run the extension
+4. Have fun building/enhancing this VSC plugin
+
+---
+
 ## Stack used
 * TypeScript
 * Webpack
