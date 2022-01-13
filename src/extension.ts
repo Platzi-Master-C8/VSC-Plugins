@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { commands, ExtensionContext, window, workspace } from 'vscode';
 import { showInformation } from './services/ShowInformation';
+import { getToken } from "./services/data/Token";
 import { LocalStorage } from "./services/data/LocalStorage";
 
 // this method is called when your extension is activated
@@ -12,8 +13,17 @@ export function activate(context: ExtensionContext): void {
     'gethired-vscode-plugin.showInformation',
     showInformation
   );
-
   context.subscriptions.push(cmd);
+
+  context.subscriptions.push(commands.registerCommand(
+    "gethired-vscode-plugin.enterToken", 
+    () => getToken(context.globalState)
+  ))
+
+  // window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
+  //   window.showInformationMessage("An action has been triggered")
+  // })
+
 
   // const activeEditor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
   // const regex = new RegExp(/\.[a-z]+$/i)
@@ -21,7 +31,7 @@ export function activate(context: ExtensionContext): void {
   // if(!activeEditor){
   // 	answer = "No active editor"
   // }else{
-    // answer = String(activeEditor.document.uri)
+  //   answer = String(activeEditor.document.uri)
   // }
 
   // let uri = {
