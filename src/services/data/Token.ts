@@ -7,7 +7,8 @@ const getToken = async (ctx: Memento) => {
   const storageManager = new LocalStorage(ctx);
   const token: string | undefined = await window.showInputBox()
   if(token){
-    storageManager.setValue("TOKEN", token)
+    // TODO => Set the correct logic to accept the token
+    storageManager.setValue("GH_TOKEN", {Token: token})
     window.showInformationMessage("Token saved successfully")
   }
 };
