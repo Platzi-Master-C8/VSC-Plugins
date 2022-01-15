@@ -1,16 +1,11 @@
-import { window } from "vscode";
+import { window, TextEditor } from "vscode";
 
 const userLanguages = () => {
-  window.showInformationMessage("Hi");
-  // const activeEditor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
-  // const regex = new RegExp(/\.[a-z]+$/i)
-  // let answer: string;
-  // if(!activeEditor){
-  // 	answer = "No active editor"
-  // }else{
-  //   answer = String(activeEditor.document.uri)
-  // }
-
+  const activeEditor: TextEditor | undefined = window.activeTextEditor;
+  const regex = new RegExp(/\.[a-z]+$/i)
+  let answer: string | RegExpMatchArray | "" | null;
+  answer = (activeEditor) ? String(activeEditor.document.uri).match(regex) : "";
+  window.showInformationMessage(answer?.length ? answer[0] : "")
   // let uri = {
   // 	value: answer
   // }
@@ -19,7 +14,7 @@ const userLanguages = () => {
 
   // const readUri = storageManager.getValue("URI")
   // console.log(readUri)
-  // vscode.window.showInformationMessage(answer)
+  // vscode.
   // vscode.workspace.onDidChangeWorkspaceFolders(() => doSomething(readUri))
 };
 
