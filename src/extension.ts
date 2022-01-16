@@ -21,7 +21,7 @@ export function activate(context: ExtensionContext): void {
   ))
 
   // This function will be called onStartupFinished
-  userLanguages(context.globalState)
+  userLanguages(context.globalState, true)
 
   // This action triggers an action everytime the user moves tabs
   window.onDidChangeActiveTextEditor((editor: TextEditor | undefined) => {

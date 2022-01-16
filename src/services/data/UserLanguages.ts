@@ -1,9 +1,12 @@
 import { window, TextEditor, Memento } from "vscode";
 import { LocalStorage } from "./LocalStorage";
 
-const userLanguages = (storage: Memento) => {
+const userLanguages = (storage: Memento, flag: boolean = false) => {
   const storageManager = new LocalStorage(storage);
-  // storageManager.setValue("GHUserLanguages", null)
+  if(flag){
+    // Here there must be internet comprobation and send/delete/save data
+    storageManager.setValue("GHUserLanguages", null)
+  }
   const activeEditor: TextEditor | undefined = window.activeTextEditor;
   const regex = new RegExp(/\.[a-z]+$/i)
   let answer: string | RegExpMatchArray | "" | null;
