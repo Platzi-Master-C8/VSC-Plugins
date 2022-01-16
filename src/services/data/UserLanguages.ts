@@ -1,26 +1,42 @@
-import { window } from "vscode";
+import { window, TextEditor, Memento } from "vscode";
+import { LocalStorage } from "./LocalStorage";
 
-const userLanguages = () => {
-  window.showInformationMessage("Hi");
-  // const activeEditor: vscode.TextEditor | undefined = vscode.window.activeTextEditor;
-  // const regex = new RegExp(/\.[a-z]+$/i)
-  // let answer: string;
-  // if(!activeEditor){
-  // 	answer = "No active editor"
-  // }else{
-  //   answer = String(activeEditor.document.uri)
-  // }
+const userLanguages = (storage: Memento, flag: boolean = false) => {
+  const storageManager = new LocalStorage(storage);
+  if(flag){
+    // Here there must be internet comprobation and send/delete/save data
+    storageManager.setValue("GHUserLanguages", null)
+  }
+  const activeEditor: TextEditor | undefined = window.activeTextEditor;
+  const regex = new RegExp(/\.[a-z]+$/i)
+  let answer: string | RegExpMatchArray | "" | null;
 
-  // let uri = {
-  // 	value: answer
-  // }
-  // let storageManager = new LocalStorage(context.globalState);
-  // storageManager.setValue("URI", uri)
 
-  // const readUri = storageManager.getValue("URI")
-  // console.log(readUri)
-  // vscode.window.showInformationMessage(answer)
-  // vscode.workspace.onDidChangeWorkspaceFolders(() => doSomething(readUri))
+  answer = (activeEditor) ? String(activeEditor.document.uri).match(regex) : "";
+  let userLan: any = storageManager.getValue("GHUserLanguages")
+  const extension: string | null = answer ? answer[0] : null
+
+  if(userLan && extension){
+    let flag = userLan.value.find((item: any) => item.lenguageExtension === extension)
+    if(!flag){
+      userLan.value.push({
+        lenguageExtension: extension,
+        date: new Date()
+      })
+      storageManager.setValue("GHUserLanguages", userLan)
+    }
+  }else{
+    storageManager.setValue("GHUserLanguages", {
+      value: [
+        {
+          lenguageExtension: extension,
+          date: new Date()
+        }
+      ]
+    })
+  }
+
+  console.log(storageManager.getValue("GHUserLanguages"))
 };
 
 export { userLanguages };
