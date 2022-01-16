@@ -34,8 +34,6 @@ const userLanguages = (storage: Memento) => {
   }
 
   console.log(storageManager.getValue("GHUserLanguages"))
-
-  // vscode.workspace.onDidChangeWorkspaceFolders(() => doSomething(readUri))
 };
 
 export { userLanguages };
