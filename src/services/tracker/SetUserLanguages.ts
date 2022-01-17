@@ -14,40 +14,24 @@ const setUserLanguages = (storage: Memento, flag: boolean = false) => {
 
   if(flag){
     // Here there must be internet comprobation and send/delete/save data
-    storageManager.setValue("GHUserLanguages", {
+    const GHUserLanArr: string[] = []
+    let GHUserLan = {
       value: {
         date: new Date(),
-        lenguages: [extension]
+        languages: GHUserLanArr
       }
-    })
+    }
+    if(extension){
+      GHUserLan.value.languages.push(extension)
+    }
+    storageManager.setValue("GHUserLanguages", GHUserLan)
   }else{
-    let doesExtExists = userLan.value.lenguages.find((item: string) => item === extension)
+    let doesExtExists = userLan.value.languages.find((item: string) => item === extension)
     if(!doesExtExists){
-      userLan.value.lenguages.push(extension)
+      userLan.value.languages.push(extension)
       storageManager.setValue("GHUserLanguages", userLan)
     }
   }
-
-
-  // if(userLan && extension){
-  //   let flag = userLan.value.lenguages.find((item: string) => item === extension)
-  //   if(!flag){
-  //     userLan.value.lenguages.push({
-  //       lenguageExtension: extension,
-  //       date: new Date()
-  //     })
-  //     storageManager.setValue("GHUserLanguages", userLan)
-  //   }
-  // }else{
-  //   storageManager.setValue("GHUserLanguages", {
-  //     value: [
-  //       {
-  //         lenguageExtension: extension,
-  //         date: new Date()
-  //       }
-  //     ]
-  //   })
-  // }
 
   console.log(storageManager.getValue("GHUserLanguages"))
 };
