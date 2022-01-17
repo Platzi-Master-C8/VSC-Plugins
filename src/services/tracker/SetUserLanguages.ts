@@ -33,7 +33,7 @@ const setUserLanguages = (storage: Memento, flag: boolean = false) => {
     }
   }
 
-  console.log(storageManager.getValue("GHUserLanguages"))
+  // console.log(storageManager.getValue("GHUserLanguages"))
 };
 
 export { setUserLanguages };
