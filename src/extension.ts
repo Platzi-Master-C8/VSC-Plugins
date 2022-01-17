@@ -1,7 +1,7 @@
 import { commands, ExtensionContext, window, workspace, TextEditor } from 'vscode';
 import { showInformation } from './services/ShowInformation';
 import { getToken } from "./services/data/Token";
-import { userLanguages } from "./services/data/UserLanguages";
+import { setUserLanguages } from "./services/tracker/SetUserLanguages";
 
 // this method is called when your extension is activated
 export function activate(context: ExtensionContext): void {
@@ -21,12 +21,12 @@ export function activate(context: ExtensionContext): void {
   ))
 
   // This function will be called onStartupFinished
-  userLanguages(context.globalState, true)
+  setUserLanguages(context.globalState, true)
 
   // This action triggers an action everytime the user moves tabs
   window.onDidChangeActiveTextEditor((editor: TextEditor | undefined) => {
     if(editor){
-      userLanguages(context.globalState)
+      setUserLanguages(context.globalState)
     }
   })
 }
