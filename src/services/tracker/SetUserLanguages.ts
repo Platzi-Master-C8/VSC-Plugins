@@ -2,7 +2,7 @@ import { window, TextEditor, Memento } from "vscode";
 import { LocalStorage } from "../data/LocalStorage";
 
 const setUserLanguages = (storage: Memento, flag: boolean = false) => {
-  const storageManager = new LocalStorage(storage);
+  const storageManager: LocalStorage = new LocalStorage(storage);
   const activeEditor: TextEditor | undefined = window.activeTextEditor;
   const regex = new RegExp(/\.[a-z]+$/i)
   let answer: string | RegExpMatchArray | "" | null;
@@ -33,7 +33,7 @@ const setUserLanguages = (storage: Memento, flag: boolean = false) => {
     }
   }
 
-  // console.log(storageManager.getValue("GHUserLanguages"))
+  console.log("GHUserLanguages", storageManager.getValue("GHUserLanguages"))
 };
 
 export { setUserLanguages };

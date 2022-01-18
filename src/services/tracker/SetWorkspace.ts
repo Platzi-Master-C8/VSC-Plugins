@@ -2,18 +2,18 @@ import { Memento, workspace } from "vscode";
 import { LocalStorage } from "../data/LocalStorage";
 
 const setWorkspace = (storage: Memento) => {
-  const workspaceFolder = workspace.workspaceFolders
-  const storageManager = new LocalStorage(storage);
+  const workspaceFolder: string | undefined = workspace.name
+  const storageManager: LocalStorage = new LocalStorage(storage);
   if(workspaceFolder){
     storageManager.setValue("GHUserWorkspaces", [
       {
-        workspace: workspaceFolder[0].name,
+        workspace: workspaceFolder,
         date: new Date()
       }
     ])
   }
 
-  console.log(storageManager.getValue("GHUserWorkspaces"))
+  console.log("GHUserWorkspaces", storageManager.getValue("GHUserWorkspaces"))
 }
 
 export { setWorkspace };
