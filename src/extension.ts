@@ -1,7 +1,8 @@
-import { commands, ExtensionContext, window, workspace, TextEditor } from 'vscode';
+import { commands, ExtensionContext, window, TextEditor } from 'vscode';
 import { showInformation } from './services/ShowInformation';
 import { getToken } from "./services/data/Token";
 import { setUserLanguages } from "./services/tracker/SetUserLanguages";
+import { setWorkspace } from "./services/tracker/SetWorkspace";
 
 // this method is called when your extension is activated
 export function activate(context: ExtensionContext): void {
@@ -29,6 +30,8 @@ export function activate(context: ExtensionContext): void {
       setUserLanguages(context.globalState)
     }
   })
+
+  setWorkspace(context.globalState)
 }
 
 // this method is called when your extension is deactivated
