@@ -1,3 +1,4 @@
+import { Performance, performance } from "perf_hooks";
 import { TextDocumentChangeEvent, TextEditor, window, workspace } from "vscode";
 import { LocalStorage } from "../data/LocalStorage";
 
@@ -20,12 +21,19 @@ const addRecord = (instance: TextEditor, storageManager: LocalStorage) => {
   storageManager.setValue("GHUserTime", currentUserTime)
 }
 
-const timeTracker = (e: TextDocumentChangeEvent) => {
-  let currentTextEditor: TextEditor | undefined = window.activeTextEditor
+let t0:number, t1:number
+
+const timeTracker = (e: TextDocumentChangeEvent, keydowns: number) => {
   if(e.contentChanges.length){
+    if(keydowns === 1){
+      t0 = performance.now();
+    }
+
+    let currentTextEditor: TextEditor | undefined = window.activeTextEditor
     console.log("Tracking... " + currentTextEditor?.document.fileName)
     const timeEndsSubscription = setTimeout(() => {
-      console.log("Your time has finished")
+      t1 = performance.now()
+      console.log(`Your time has finished, you were coding ${Math.round((t1 - t0)/1000)} seconds`)
     }, 10000)
 
     const onTypeListener = workspace.onDidChangeTextDocument((e) => {

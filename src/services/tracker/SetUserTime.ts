@@ -5,6 +5,7 @@ import { isStoraged, addRecord, timeTracker } from "./utils";
 const regex = new RegExp(/[\.\w]+$/i)
 
 const setUserTime = (storage: Memento, flag: boolean) => {
+  let keydowns: number = 0
   let currentTextEditor: TextEditor | undefined = window.activeTextEditor
   const storageManager: LocalStorage = new LocalStorage(storage)
 
@@ -21,7 +22,12 @@ const setUserTime = (storage: Memento, flag: boolean) => {
       }
     }
 
-    const subscription = workspace.onDidChangeTextDocument(timeTracker)
+    const subscription = workspace.onDidChangeTextDocument((e) => {
+      if(e.contentChanges.length){
+        keydowns += 1
+        timeTracker(e, keydowns)
+      }
+    })
     window.onDidChangeActiveTextEditor(() => subscription.dispose())
   }
 
