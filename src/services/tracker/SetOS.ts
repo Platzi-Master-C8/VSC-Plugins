@@ -20,7 +20,7 @@ const setOS = (storage: Memento) => {
   }
 
   storageManager.setValue("GHOperativeSystem", currentOS)
-  console.log("GHOperativeSystem:", storageManager.getValue("GHOperativeSystem"))
+  // console.log("GHOperativeSystem:", storageManager.getValue("GHOperativeSystem"))
 }
 
 export { setOS }

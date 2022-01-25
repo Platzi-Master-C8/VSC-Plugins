@@ -33,13 +33,13 @@ export function activate(context: ExtensionContext): void {
   setOS(context.globalState)
 
   // This function starts tracking the user time
-  setUserTime()
+  setUserTime(context.globalState, true)
 
   // This action triggers an action everytime the user moves tabs
   window.onDidChangeActiveTextEditor((editor: TextEditor | undefined) => {
     if(editor){
       setUserLanguages(context.globalState)
-      setUserTime()
+      setUserTime(context.globalState, false)
     }
   })
 }
