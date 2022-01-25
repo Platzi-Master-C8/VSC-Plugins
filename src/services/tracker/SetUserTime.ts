@@ -21,7 +21,7 @@ const setUserTime = (storage: Memento, flag: boolean) => {
       }
     }
 
-    let subscription = workspace.onDidChangeTextDocument(timeTracker)
+    const subscription = workspace.onDidChangeTextDocument(timeTracker)
     window.onDidChangeActiveTextEditor(() => subscription.dispose())
   }
 
