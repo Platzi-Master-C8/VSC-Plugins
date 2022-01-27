@@ -21,18 +21,20 @@ const addRecord = (instance: TextEditor, storageManager: LocalStorage) => {
   storageManager.setValue("GHUserTime", currentUserTime)
 }
 
-let t0:number, t1:number
+let t0:number, t1:number, flag:boolean = true
 
 const timeTracker = (e: TextDocumentChangeEvent, keydowns: number) => {
   if(e.contentChanges.length){
-    if(keydowns === 1){
+    if(keydowns > 0 && flag){
       t0 = performance.now();
+      flag = false
     }
 
     let currentTextEditor: TextEditor | undefined = window.activeTextEditor
     console.log("Tracking... " + currentTextEditor?.document.fileName)
     const timeEndsSubscription = setTimeout(() => {
       t1 = performance.now()
+      flag = true
       console.log(`Your time has finished, you were coding ${Math.round((t1 - t0)/1000)} seconds`)
     }, 10000)
 
