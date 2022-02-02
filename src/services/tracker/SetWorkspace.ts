@@ -13,7 +13,7 @@ const setWorkspace = (storage: Memento) => {
     ])
   }
 
-  console.log("GHUserWorkspaces", storageManager.getValue("GHUserWorkspaces"))
+  // console.log("GHUserWorkspaces", storageManager.getValue("GHUserWorkspaces"))
 }
 
 export { setWorkspace };

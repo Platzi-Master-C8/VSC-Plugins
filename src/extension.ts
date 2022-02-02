@@ -4,6 +4,7 @@ import { getToken } from "./services/data/Token";
 import { setUserLanguages } from "./services/tracker/SetUserLanguages";
 import { setWorkspace } from "./services/tracker/SetWorkspace";
 import { setOS } from './services/tracker/SetOS';
+import { setUserTime } from './services/tracker/SetUserTime';
 
 // this method is called when your extension is activated
 export function activate(context: ExtensionContext): void {
@@ -25,18 +26,21 @@ export function activate(context: ExtensionContext): void {
   // This function will be called onStartupFinished
   setUserLanguages(context.globalState, true)
 
+  // This function will be called to know the workspace
+  setWorkspace(context.globalState)
+
+  // This function will be called to know the operative system
+  setOS(context.globalState)
+
+  // This function starts tracking the user time
+  setUserTime(context.globalState, true)
+
   // This action triggers an action everytime the user moves tabs
   window.onDidChangeActiveTextEditor((editor: TextEditor | undefined) => {
     if(editor){
       setUserLanguages(context.globalState)
     }
   })
-
-  // This function will be called to know the workspace
-  setWorkspace(context.globalState)
-
-  // This function will be called to know the operative system
-  setOS(context.globalState)
 }
 
 // this method is called when your extension is deactivated
