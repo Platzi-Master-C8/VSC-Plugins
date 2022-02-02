@@ -5,7 +5,7 @@ const setWorkspace = (storage: Memento) => {
   const workspaceFolder: string | undefined = workspace.name
   const storageManager: LocalStorage = new LocalStorage(storage);
   if(workspaceFolder){
-    storageManager.setValue("GHUserWorkspaces", [
+    storageManager.setValue("getHiredWorkspace", [
       {
         workspace: workspaceFolder,
         date: new Date()
@@ -13,7 +13,7 @@ const setWorkspace = (storage: Memento) => {
     ])
   }
 
-  console.log("GHUserWorkspaces", storageManager.getValue("GHUserWorkspaces"))
+  console.log("getHiredWorkspace", storageManager.getValue("getHiredWorkspace"))
 }
 
 export { setWorkspace };

@@ -1,8 +1,6 @@
 import { commands, ExtensionContext } from 'vscode';
 import { getToken } from "./services/data/Token";
 import { tracker } from "./services/tracker";
-import { setOS } from './services/tracker/SetOS';
-import { setWorkspace } from './services/tracker/SetWorkspace';
 
 // this method is called when your extension is activated
 export function activate(context: ExtensionContext): void {
@@ -18,6 +16,6 @@ export function activate(context: ExtensionContext): void {
 
 // this method is called when your extension is deactivated
 export function deactivate(): void {
-  
+
   // Code for the last track time
 }

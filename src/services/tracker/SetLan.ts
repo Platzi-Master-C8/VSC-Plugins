@@ -1,6 +1,6 @@
 import { Memento, TextEditor, window, workspace, TextDocumentChangeEvent } from "vscode";
 import { LocalStorage } from "../data/LocalStorage";
-import { isStoraged, addRecord, timeTracker } from "./utils";
+import { isStoraged, timeTracker } from "./utils";
 
 const regex = new RegExp(/[\.\w]+$/i)
 export const setLan = (storage: Memento, flag: boolean) => {
@@ -13,21 +13,17 @@ export const setLan = (storage: Memento, flag: boolean) => {
 
     if(flag){
       // comprobation to send data to the backend
-      storageManager.setValue("GHUserTime", [])
-      addRecord(currentTextEditor, storageManager)
-    }else{
-      const storaged = isStoraged(fileName, storageManager)
-      if(!storaged){
-        addRecord(currentTextEditor, storageManager)
-      }
+      storageManager.setValue("getHiredLan", [])
+      // addRecord(currentTextEditor, storageManager)
     }
 
     const subscription = workspace.onDidChangeTextDocument((e:TextDocumentChangeEvent) => {
       if(e.contentChanges.length){
         keydowns += 1
-        timeTracker(e, keydowns)
+        timeTracker(e, keydowns, storageManager)
       }
     })
+
     window.onDidChangeActiveTextEditor(() => {
       subscription.dispose()
       setLan(storage, false)
