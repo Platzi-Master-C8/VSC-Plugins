@@ -1,4 +1,4 @@
-import { Memento, TextEditor, window, workspace } from "vscode";
+import { Memento, TextEditor, window, workspace, TextDocumentChangeEvent } from "vscode";
 import { LocalStorage } from "../data/LocalStorage";
 
 import { isStoraged, addRecord, timeTracker } from "./utils";
@@ -11,6 +11,7 @@ const setUserTime = (storage: Memento, flag: boolean) => {
 
   if(currentTextEditor){
     const fileName = currentTextEditor.document.fileName
+
     if(flag){
       // comprobation to send data to the backend
       storageManager.setValue("GHUserTime", [])
@@ -22,13 +23,16 @@ const setUserTime = (storage: Memento, flag: boolean) => {
       }
     }
 
-    const subscription = workspace.onDidChangeTextDocument((e) => {
+    const subscription = workspace.onDidChangeTextDocument((e:TextDocumentChangeEvent) => {
       if(e.contentChanges.length){
         keydowns += 1
         timeTracker(e, keydowns)
       }
     })
-    window.onDidChangeActiveTextEditor(() => subscription.dispose())
+    window.onDidChangeActiveTextEditor(() => {
+      subscription.dispose()
+      setUserTime(storage, false)
+    })
   }
 
 };

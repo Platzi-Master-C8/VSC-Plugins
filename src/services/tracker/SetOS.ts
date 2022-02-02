@@ -13,14 +13,14 @@ const setOS = (storage: Memento) => {
       currentOS = "Linux"
       break;
     case "darwin":
-      currentOS = "iOS"
+      currentOS = "MacOS"
       break;
     default:
       currentOS = "Web"
   }
 
   storageManager.setValue("GHOperativeSystem", currentOS)
-  // console.log("GHOperativeSystem:", storageManager.getValue("GHOperativeSystem"))
+  console.log("GHOperativeSystem:", storageManager.getValue("GHOperativeSystem"))
 }
 
 export { setOS }

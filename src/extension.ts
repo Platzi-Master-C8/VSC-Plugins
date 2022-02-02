@@ -39,7 +39,7 @@ export function activate(context: ExtensionContext): void {
   window.onDidChangeActiveTextEditor((editor: TextEditor | undefined) => {
     if(editor){
       setUserLanguages(context.globalState)
-      setUserTime(context.globalState, false)
+      // setUserTime(context.globalState, false)
     }
   })
 }
