@@ -31,7 +31,9 @@ const preserveData = (instance: TextEditor | undefined, storageManager: LocalSto
   }else{
     arr.push({
       lan: instance?.document.languageId,
-      fileName: instance?.document.fileName,
+      fileName: getFileName(instance?.document.fileName),
+      workspace: storageManager.getValue("getHiredWorkspace"),
+      os: storageManager.getValue("getHiredOS"),
       time: dev,
       stamps: [
         {

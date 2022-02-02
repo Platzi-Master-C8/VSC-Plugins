@@ -20,7 +20,6 @@ const setOS = (storage: Memento) => {
   }
 
   storageManager.setValue("getHiredOS", currentOS)
-  console.log("getHiredOS:", storageManager.getValue("getHiredOS"))
 }
 
 export { setOS }
