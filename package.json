@@ -9,17 +9,11 @@
   },
   "activationEvents": [
     "onStartupFinished",
-    "onCommand:gethired-vscode-plugin.showInformation",
     "onCommand:gethired-vscode-plugin.enterToken"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "gethired-vscode-plugin.showInformation",
-        "category": "GetHired Tracker",
-        "title": "Show Example Message"
-      },
       {
         "command": "gethired-vscode-plugin.enterToken",
         "category": "GetHired Tracker",

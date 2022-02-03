@@ -4,16 +4,17 @@ import { LocalStorage } from "../data/LocalStorage";
 const setWorkspace = (storage: Memento) => {
   const workspaceFolder: string | undefined = workspace.name
   const storageManager: LocalStorage = new LocalStorage(storage);
+  // if(workspaceFolder){
+  //   storageManager.setValue("getHiredWorkspace", [
+  //     {
+  //       workspace: workspaceFolder,
+  //       date: new Date()
+  //     }
+  //   ])
+  // }
   if(workspaceFolder){
-    storageManager.setValue("GHUserWorkspaces", [
-      {
-        workspace: workspaceFolder,
-        date: new Date()
-      }
-    ])
+    storageManager.setValue("getHiredWorkspace", workspaceFolder)
   }
-
-  // console.log("GHUserWorkspaces", storageManager.getValue("GHUserWorkspaces"))
 }
 
 export { setWorkspace };
