@@ -1,6 +1,7 @@
 import { performance } from "perf_hooks";
 import { TextDocumentChangeEvent, TextEditor, window, workspace } from "vscode";
 import { LocalStorage } from "../data/LocalStorage";
+import { sendStats } from "../network/sendStats";
 
 const regexp = new RegExp(/[\w]+\.[a-z]{2,4}/)
 let t0:number, t1:number, flag:boolean = true, firstOne:any, lastOne:any
@@ -44,8 +45,9 @@ const preserveData = (instance: TextEditor | undefined, storageManager: LocalSto
     })
   }
 
-  console.log(arr)
-  storageManager.setValue("getHiredLan", arr)
+  sendStats(arr, storageManager)
+  // console.log("stats: ", arr)
+  // storageManager.setValue("getHiredLan", arr)
 }
 
 const timeTracker = (e: TextDocumentChangeEvent, keydowns: number, storageManager: LocalStorage) => {

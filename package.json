@@ -9,7 +9,8 @@
   },
   "activationEvents": [
     "onStartupFinished",
-    "onCommand:gethired-vscode-plugin.enterToken"
+    "onCommand:gethired-vscode-plugin.enterToken",
+    "onCommand:gethired-vscode-plugin.enterTokenHard"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -18,6 +19,11 @@
         "command": "gethired-vscode-plugin.enterToken",
         "category": "GetHired Tracker",
         "title": "Enter Token"
+      },
+      {
+        "command": "gethired-vscode-plugin.enterTokenHard",
+        "category": "GetHired Tracker",
+        "title": "Enter Token Hard"
       }
     ]
   },
@@ -40,6 +46,7 @@
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.1.0",
     "@vscode/test-electron": "^1.6.2",
+    "axios": "^0.25.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-typescript": "^16.0.0",
     "eslint-config-prettier": "^8.3.0",
@@ -47,6 +54,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "glob": "^7.1.7",
     "mocha": "^9.1.3",
+    "node-fetch": "^3.2.0",
     "prettier": "^2.4.1",
     "ts-loader": "^9.2.5",
     "typescript": "^4.4.4",
