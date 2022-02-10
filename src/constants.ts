@@ -1,0 +1,1 @@
+export const URL: string = `https://ms-plugins.herokuapp.com/api/v1/users/{userId}/statistics?data=langueages&data=dev`;
