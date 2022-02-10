@@ -6,7 +6,7 @@ import { LocalStorage } from "../data/LocalStorage";
 export const sendStats = async (stats: any[], storageManager: LocalStorage) => {
   const userToken: string = storageManager.getValue("getHiredToken");
   const options = { headers: {'userKey': userToken} };
-  const config = { langueages: stats }
+  const config = { statistics: stats }
 
   if(!storageManager.getValue("getHiredUserId")){
     await axios.get('https://ms-plugins.herokuapp.com/api/v1/users', options)
@@ -14,7 +14,7 @@ export const sendStats = async (stats: any[], storageManager: LocalStorage) => {
       storageManager.setValue("getHiredUserId", response.data._id)
     })
     .catch(function (error) {
-      window.showErrorMessage('Error sending data: ', error);
+      console.log('Error sending data: ', error);
     })
     .then(function () {
       // console.log("Process already finished")
