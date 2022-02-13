@@ -1,4 +1,3 @@
-import { performance } from "perf_hooks";
 import { TextDocumentChangeEvent, TextEditor, window, workspace } from "vscode";
 import { LocalStorage } from "../data/LocalStorage";
 import { sendStats } from "../network/sendStats";
@@ -50,13 +49,13 @@ const timeTracker = (e: TextDocumentChangeEvent, keydowns: number, storageManage
   if(e.contentChanges.length){
     let currentTextEditor: TextEditor | undefined = window.activeTextEditor
     if(keydowns > 0 && flag){
-      t0 = performance.now();
+      t0 = new Date().getTime()
       firstOne = new Date()
       flag = false
     }
 
     const timeEndsSubscription = setTimeout(() => {
-      t1 = performance.now()
+      t1 = new Date().getTime()
       flag = true
       lastOne = new Date()
       preserveData(currentTextEditor, storageManager, Math.round((t1 - t0)/1000))
@@ -71,7 +70,7 @@ const timeTracker = (e: TextDocumentChangeEvent, keydowns: number, storageManage
     window.onDidChangeActiveTextEditor((e) => {
       if(!flag && e){
         flag = true
-        t1 = performance.now()
+        t1 = new Date().getTime()
         lastOne = new Date()
         preserveData(currentTextEditor, storageManager, Math.round((t1 - t0)/1000))
         onTypeListener.dispose()

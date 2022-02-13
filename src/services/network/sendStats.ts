@@ -1,6 +1,5 @@
 import axios from "axios";
 import { URL } from "../../constants";
-import { window } from "vscode";
 import { LocalStorage } from "../data/LocalStorage";
 
 export const sendStats = async (stats: any[], storageManager: LocalStorage) => {
@@ -28,7 +27,5 @@ export const sendStats = async (stats: any[], storageManager: LocalStorage) => {
 
   if(response.status === 200){
     storageManager.setValue("getHiredLan", [])
-    // console.log(response)
-    // console.log(storageManager.getValue("getHiredUserId"))
   }
 };
