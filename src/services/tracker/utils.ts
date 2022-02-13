@@ -36,18 +36,14 @@ const preserveData = (instance: TextEditor | undefined, storageManager: LocalSto
       workspace: storageManager.getValue("getHiredWorkspace"),
       os: storageManager.getValue("getHiredOS"),
       time: dev,
-      stamps: [
-        {
-          start: firstOne,
-          end: lastOne
-        }
-      ]
+      stamps: {
+        start: firstOne,
+        end: lastOne
+      }
     })
   }
 
   sendStats(arr, storageManager)
-  // console.log("stats: ", arr)
-  // storageManager.setValue("getHiredLan", arr)
 }
 
 const timeTracker = (e: TextDocumentChangeEvent, keydowns: number, storageManager: LocalStorage) => {
@@ -57,7 +53,6 @@ const timeTracker = (e: TextDocumentChangeEvent, keydowns: number, storageManage
       t0 = performance.now();
       firstOne = new Date()
       flag = false
-      // console.log("Tracking... " + currentTextEditor?.document.fileName)
     }
 
     const timeEndsSubscription = setTimeout(() => {
@@ -65,7 +60,6 @@ const timeTracker = (e: TextDocumentChangeEvent, keydowns: number, storageManage
       flag = true
       lastOne = new Date()
       preserveData(currentTextEditor, storageManager, Math.round((t1 - t0)/1000))
-      // console.log(`Time ended, you were coding ${Math.round((t1 - t0)/1000)} seconds`)
     }, 10000)
 
     const onTypeListener = workspace.onDidChangeTextDocument((e) => {
@@ -80,7 +74,6 @@ const timeTracker = (e: TextDocumentChangeEvent, keydowns: number, storageManage
         t1 = performance.now()
         lastOne = new Date()
         preserveData(currentTextEditor, storageManager, Math.round((t1 - t0)/1000))
-        // console.log(`Time cutted, you were coding ${Math.round((t1 - t0)/1000)} seconds`)
         onTypeListener.dispose()
         clearTimeout(timeEndsSubscription)
       }else if(e){

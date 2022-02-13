@@ -29,5 +29,6 @@ export const sendStats = async (stats: any[], storageManager: LocalStorage) => {
   if(response.status === 200){
     storageManager.setValue("getHiredLan", [])
     // console.log(response)
+    // console.log(storageManager.getValue("getHiredUserId"))
   }
 };
