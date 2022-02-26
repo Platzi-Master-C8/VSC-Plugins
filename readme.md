@@ -33,3 +33,10 @@
 Visit [get-hired-code-tracker.vercel.app](https://get-hired-code-tracker.vercel.app/) to see your coding activity.
 
 ![Project Overview](./images/dashboard.png)
+
+---
+
+## Problem shooting
+### In case you were not able to enter your token on time
+- If it is your first time entering the token,  Press `Ctrl + Shift + P` or `⌘ + Shift + P` and type 'Enter Token'. The input box will open for you to enter the token
+- If you want to enter a new token, Press `Ctrl + Shift + P` or `⌘ + Shift + P` and type 'Enter Token Hard'. You will be able to enter the token again
