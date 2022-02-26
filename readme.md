@@ -20,7 +20,7 @@
 
 3. Restart Visual Studio Code.
 
-4. Enter your token, then press `enter`.
+4. Enter your token, then press `enter`. Your token is in settings page in your [dashboard](https://get-hired-code-tracker.vercel.app/)
 
     > (If you’re not prompted, press `Ctrl + Shift + P` or `⌘ + Shift + P` then type `Enter Token Hard`.)
 
