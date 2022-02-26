@@ -1,8 +1,11 @@
 {
-  "name": "gethired-vscode-plugin",
-  "displayName": "gethired-vscode-plugin",
+  "name": "gethired-code-tracker",
+  "displayName": "Get Hired Code Tracker",
   "description": "Track the time in your projects you are working on",
-  "publisher": "gethired",
+  "publisher": "GetHiredCodeTracker",
+  "author": {
+    "name": "GetHiredCodeTracker"
+  },
   "version": "1.0.0",
   "engines": {
     "vscode": "^1.62.0"
