@@ -4,9 +4,11 @@ import { LocalStorage } from "../data/LocalStorage";
 
 export const sendStats = async (stats: any[], storageManager: LocalStorage) => {
   const userToken: string = storageManager.getValue("getHiredToken");
+  
   const options = { headers: {'userKey': userToken} };
   const config = { statistics: stats }
-
+  
+  console.log("UserID", storageManager.getValue("getHiredUserId"))
   if(!storageManager.getValue("getHiredUserId")){
     await axios.get('https://ms-plugins.herokuapp.com/api/v1/users/id', options)
     .then(function (response) {
