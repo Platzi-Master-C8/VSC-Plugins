@@ -7,6 +7,17 @@
   "engines": {
     "vscode": "^1.62.0"
   },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "code time",
+    "productivity",
+    "time",
+    "tracking",
+    "tracker"
+  ],
+  "icon": "images/get-hired-logo-128.png",
   "activationEvents": [
     "onStartupFinished",
     "onCommand:gethired-vscode-plugin.enterToken",
