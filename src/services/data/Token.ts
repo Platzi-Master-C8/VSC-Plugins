@@ -21,12 +21,13 @@ const setTokenHard = async (ctx: ExtensionContext) => {
   const options = { headers: {'userKey': token} };
   storageManager.setValue("getHiredToken", token)
 
-  await axios.get('https://ms-plugins.herokuapp.com/api/v1/users', options)
+  await axios.get('https://ms-plugins.herokuapp.com/api/v1/users/id', options)
   .then(function (response) {
-    storageManager.setValue("getHiredUserId", response.data._id)
+    storageManager.setValue("getHiredUserId", response.data)
     window.showInformationMessage("Token re-saved successfully")
   })
   .catch(function (error) {
+    window.showInformationMessage("Error saving the token")
     console.log('Error sending data: ', error);
   })
   .then(function () {

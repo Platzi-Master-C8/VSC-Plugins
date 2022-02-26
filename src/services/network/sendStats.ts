@@ -8,9 +8,9 @@ export const sendStats = async (stats: any[], storageManager: LocalStorage) => {
   const config = { statistics: stats }
 
   if(!storageManager.getValue("getHiredUserId")){
-    await axios.get('https://ms-plugins.herokuapp.com/api/v1/users', options)
+    await axios.get('https://ms-plugins.herokuapp.com/api/v1/users/id', options)
     .then(function (response) {
-      storageManager.setValue("getHiredUserId", response.data._id)
+      storageManager.setValue("getHiredUserId", response.data)
     })
     .catch(function (error) {
       console.log('Error sending data: ', error);
