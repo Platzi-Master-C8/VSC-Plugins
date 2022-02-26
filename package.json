@@ -21,6 +21,11 @@
     "tracker"
   ],
   "icon": "images/get-hired-logo-128.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Platzi-Master-C8/VSC-Plugins.git"
+  },
+  "homepage": "https://get-hired-code-tracker.vercel.app/",
   "activationEvents": [
     "onStartupFinished",
     "onCommand:gethired-vscode-plugin.enterToken",
